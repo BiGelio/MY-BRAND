@@ -1,0 +1,27 @@
+.form-section {
+    /* display: block; */
+    /* padding: 80px; */
+    text-align: center;
+    margin-top: 40px;
+}
+
+#lname,
+#fname,
+#email,
+textarea {
+    margin-top: 1.5em;
+    width: 600px;
+    border-radius: 1em;
+    background-color: lightgray;
+}
+
+#submit {
+    border-radius: 1.5em;
+    width: 80px;
+    background-color: mediumseagreen;
+}
+
+
+/* .form-section span {
+    margin-top: 0.6em;
+} */

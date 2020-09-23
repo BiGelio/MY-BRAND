@@ -1,19 +1,41 @@
-.works {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-row-gap: 5px;
+.works-container {
+    display: block;
+    padding-top: 4em;
+    /* grid-template-columns: 1fr;
+    grid-row-gap: 5px; */
 }
 
-.works work1 {
+.works .work1,
+.work2,
+.work3,
+.work4 {
     border-radius: 5px;
+    padding: 2em;
 }
 
 .work {
-    text-align: center;
+    /* text-align: center; */
+    /* justify-content: flex; */
+    display: flex;
 }
 
 .work img {
     /* float: left; */
     width: 300px;
     height: 250px;
+    border-radius: 0.7em;
+    /* justify-content: flex; */
+}
+
+.image-content {
+    margin: auto 20px auto auto;
+}
+
+.text-content {
+    margin: auto auto auto 50px;
+    font-size: 24px;
+}
+
+.text-content p {
+    margin-bottom: 0px;
 }
