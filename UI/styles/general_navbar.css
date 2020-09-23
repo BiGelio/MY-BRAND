@@ -1,0 +1,136 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+#head {
+    margin-left: 35%;
+    /* text-align: center; */
+    font-size: 44px;
+    font-family: Lucida Calligraphy;
+    font-weight: bold;
+    /* color: white; */
+    margin-top: 3.5%;
+}
+
+nav {
+    /* color: blue; */
+}
+
+nav ul {
+    /* float: right; */
+    margin-left: 25%;
+    display: inline-flex;
+}
+
+nav ul li {
+    margin-top: 40px;
+    list-style: none;
+    /* color: #0509e2; */
+    text-decoration: none;
+}
+
+nav ul li a {
+    padding: 2em;
+    color: rgb(0, 102, 255);
+}
+
+a:hover {
+    background-color: skyblue;
+    color: #eee;
+}
+
+a:active {
+    background-color: #4CAF50;
+}
+
+.footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: #716D6D;
+    padding: 10px;
+    /* bottom: 0px; */
+}
+
+
+/* .box {
+    width: 33.333%;
+    text-align: center;
+    margin: 10px 0;
+} */
+
+form {
+    /* border: 3px solid #f1f1f1; */
+    font-family: Arial;
+}
+
+.container {
+    padding: 15px;
+    /* background-color: #f1f1f1; */
+    bottom: 0px;
+}
+
+.title {
+    color: #000000;
+}
+
+input[type=text],
+input[type=submit] {
+    width: 85%;
+    padding: 12px;
+    margin: 8px 8px 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    /* box-sizing: border-box; */
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+input[type=submit]:hover {
+    opacity: 0.8;
+}
+
+.quick_links .container {
+    text-align: center;
+}
+
+.quick_links .container span a {
+    display: grid;
+    text-decoration: none;
+    color: white;
+    padding: 12px;
+    width: 80px;
+    margin-left: 170px;
+}
+
+.address .container span img {
+    width: 40px;
+    height: 40px;
+}
+
+.address .container span {
+    padding: 10px;
+    text-align: center;
+}
+
+.address .container {
+    display: grid;
+    color: white;
+}
+
+img {
+    width: 45px;
+    height: 45px;
+    padding: 5px;
+}
+
+.box3 {
+    margin-left: 45%;
+    /* margin-right: 200px; */
+}

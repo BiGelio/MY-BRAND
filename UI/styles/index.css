@@ -1,0 +1,39 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body {
+    background: url("../Images/images.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+/* .introduction {
+    color: white;
+    margin-left: 4%;
+    margin-top: 40px;
+} */
+
+p {
+    /* color: aqua; */
+}
+
+img {
+    margin-top: 25px;
+    border-radius: 150px;
+    margin-left: 43%;
+}
+
+#description {
+    padding-top: 60px;
+    text-align: center;
+    margin: auto;
+    width: 500px;
+    /* background-color: blue; */
+    color: white;
+}
