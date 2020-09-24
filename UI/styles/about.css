@@ -11,13 +11,13 @@
 }
 
 .Container .sub-container .col {
-    padding: 30px;
+    padding: 30px 30px 0 30px;
 }
 
 .Container .sub-container .col1 img {
-    width: 330px;
-    height: 350px;
-    border-radius: 0.5em;
+    width: 350px;
+    height: 450px;
+    /* border-radius: 0.5em; */
 }
 
 .Container .sub-container .col1 {
