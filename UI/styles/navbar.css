@@ -8,10 +8,6 @@
     margin-top: 5%;
 }
 
-nav {
-    /* color: blue; */
-}
-
 nav ul {
     /* float: right; */
     margin-left: 25%;
@@ -28,4 +24,46 @@ nav ul li {
 nav ul li a {
     padding: 1em 2em 1em 2em;
     color: rgb(0, 102, 255);
+}
+
+
+/* Styles for responsiveness */
+
+@media only screen and (max-width:920px) {
+    #head {
+        margin-left: 27%;
+        font-size: 42px;
+    }
+    nav ul {
+        margin-left: 15%;
+        display: inline-flex;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    #head {
+        margin-left: 27%;
+        /* text-align: center; */
+        font-size: 34px;
+        margin-top: 5%;
+    }
+    nav ul {
+        /* float: right; */
+        margin-left: 5%;
+        display: inline-flex;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    #head {
+        margin-left: 27%;
+        font-size: 22px;
+    }
+    nav ul li a {
+        padding: 1em;
+    }
+    nav ul {
+        margin-left: 2%;
+        display: inline-flex;
+    }
 }

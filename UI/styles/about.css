@@ -1,0 +1,43 @@
+.Container {
+    padding-top: 3em;
+}
+
+.Container .sub-container {
+    display: flex;
+    width: 100%;
+    background-color: aquamarine;
+    /* border-radius: 1.5em; */
+    margin: auto;
+}
+
+.Container .sub-container .col {
+    padding: 30px 30px 0 30px;
+}
+
+.Container .sub-container .col1 img {
+    width: 350px;
+    height: 450px;
+    /* border-radius: 0.5em; */
+}
+
+.Container .sub-container .col1 {
+    text-align: center;
+}
+
+.Container .sub-container .col2,
+.col1 {
+    background-color: rgb(224, 214, 214);
+    font-size: 2em;
+    width: 50%;
+}
+
+.Container .sub-container .col2 p {
+    padding: 10px;
+    font-size: 16px;
+}
+
+
+/* header {
+    position: sticky;
+    background-color: blue;
+} */

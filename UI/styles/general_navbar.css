@@ -7,16 +7,13 @@
 
 #head {
     margin-left: 35%;
-    /* text-align: center; */
     font-size: 44px;
     font-family: Lucida Calligraphy;
     font-weight: bold;
-    /* color: white; */
     margin-top: 3.5%;
 }
 
 nav ul {
-    /* float: right; */
     margin-left: 25%;
     display: inline-flex;
 }
@@ -24,7 +21,6 @@ nav ul {
 nav ul li {
     margin-top: 40px;
     list-style: none;
-    /* color: #0509e2; */
     text-decoration: none;
 }
 
@@ -42,30 +38,17 @@ a:active {
     background-color: #4CAF50;
 }
 
+
+/* Here are css applied on footer section */
+
 .footer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
     background-color: #716D6D;
     padding: 10px;
-    /* bottom: 0px; */
 }
-
-
-/* .box {
-    width: 33.333%;
-    text-align: center;
-    margin: 10px 0;
-} */
 
 form {
-    /* border: 3px solid #f1f1f1; */
     font-family: Arial;
-}
-
-.container {
-    padding: 15px;
-    /* background-color: #f1f1f1; */
-    bottom: 0px;
 }
 
 .title {
@@ -92,7 +75,7 @@ input[type=submit]:hover {
     opacity: 0.8;
 }
 
-.quick_links .container {
+.quick_links .container h2 {
     text-align: center;
 }
 
@@ -102,17 +85,22 @@ input[type=submit]:hover {
     color: white;
     padding: 12px;
     width: 80px;
-    margin-left: 170px;
+    margin: auto;
 }
 
-.address .container span img {
+.address .container p img {
     width: 40px;
     height: 40px;
 }
 
-.address .container span {
+.address .container p {
     padding: 10px;
     text-align: center;
+}
+
+.address .container h2 {
+    text-align: center;
+    color: #000000;
 }
 
 .address .container {
@@ -120,13 +108,14 @@ input[type=submit]:hover {
     color: white;
 }
 
-img {
+.imagess {
+    display: grid;
     width: 45px;
     height: 45px;
     padding: 5px;
+    margin-left: 45px;
 }
 
-.box3 {
-    margin-left: 45%;
-    /* margin-right: 200px; */
+.box {
+    width: 25%;
 }
