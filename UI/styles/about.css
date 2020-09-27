@@ -36,8 +36,58 @@
     font-size: 16px;
 }
 
+@media only screen and (max-width:920px) {
+    .Container .sub-container {
+        display: block;
+        width: 100%;
+        background-color: aquamarine;
+        /* border-radius: 1.5em; */
+        margin: auto;
+    }
+    .Container .sub-container .col {
+        padding: 30px 30px 0 30px;
+    }
+    .Container .sub-container .col1 img {
+        width: 350px;
+        height: 450px;
+        /* border-radius: 0.5em; */
+    }
+    .Container .sub-container .col2,
+    .col1 {
+        background-color: rgb(224, 214, 214);
+        font-size: 2em;
+        width: 50%;
+    }
+    .Container .sub-container .col2 p {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
 
-/* header {
-    position: sticky;
-    background-color: blue;
-} */
+@media only screen and (max-width:768px) {
+    .Container .sub-container {
+        display: block;
+        width: 100%;
+        background-color: aquamarine;
+        /* border-radius: 1.5em; */
+        margin: auto;
+    }
+    .Container .sub-container .col {
+        padding: 20px 20px 0 20px;
+    }
+    .Container .sub-container .col1 img {
+        width: 300px;
+        height: 400px;
+        /* border-radius: 0.5em; */
+    }
+    .Container .sub-container .col2,
+    .col1 {
+        background-color: rgb(224, 214, 214);
+        font-size: 1.5em;
+        width: 100%;
+    }
+    .Container .sub-container .col2 p {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
