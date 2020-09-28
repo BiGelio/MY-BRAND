@@ -17,6 +17,7 @@
     /* text-align: center; */
     /* justify-content: flex; */
     display: flex;
+    background-color: #C4C4C4;
 }
 
 .work img {
