@@ -88,12 +88,12 @@ input[type=submit]:hover {
     margin: auto;
 }
 
-.address .container p img {
+.address .container span img {
     width: 40px;
     height: 40px;
 }
 
-.address .container p {
+.address .container span {
     padding: 10px;
     text-align: center;
 }
