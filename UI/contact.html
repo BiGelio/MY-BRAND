@@ -2,9 +2,13 @@
 <html>
 
 <head>
-    <title>Personal profile|Contact </title>
-    <link rel="stylesheet" href="styles\general_navbar.css">
+    <title>Service at time</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="./Images/favicon.jpeg" sizes="16x16">
+    <meta http-equiv="refresh" content="30">
+    <meta name="keywords" content="Service at time,service,designer">
+    <link rel="stylesheet" href="styles\general_navbar.css">
+    <link rel="stylesheet" href="styles\contact.css">
 </head>
 
 <body>
@@ -18,8 +22,31 @@
             <li><a href="#">CONTACT</a></li>
             <li>
                 <a href="login.html">SIGN IN</a></li>
+
         </ul>
     </nav>
+    <!-- Section of contact form -->
+
+    <form action="">
+        <div class="form-section">
+            <span for="fname"> First name</span><br>
+            <input type="text" name="fname" id="fname" required><br>
+
+            <span for="lname">Last name</span><br>
+            <input type="text" name="" id="lname" required><br>
+
+            <span for="email"> Email</span><br>
+            <input type="text" name="email" id="email" required><br>
+
+            <span for="msg"> Message</span><br>
+            <textarea name="msg" id="msg" cols="80" rows="10" required></textarea><br>
+
+            <input type="submit" value="send" id="submit">
+        </div>
+    </form>
+
+
+    <!-- Footer section of this page -->
     <div class="footer">
         <div class="box quick_links">
             <div class="container">
@@ -29,44 +56,35 @@
                 <span><a href="portifolio.html">Portifolio</a></span>
                 <span>  <a href="blog.html">Blog</a></span>
                 <span> <a href="contact.html">Contact</a></span>
-
-
-
-
             </div>
         </div>
         <div class="box address">
             <div class="container">
                 <h2 class="titles">Address</h2>
-
                 <span><img src="./Images/locationicon.png" alt="">Rwanda, Kigali</span>
                 <span><img src="./Images/whatsapp.png" alt="">0723 436 915</span>
                 <span><img src="./Images/email.jpg" alt="">info@gmail.com</span>
-
             </div>
         </div>
         <div class="box sub">
             <form action="#">
                 <div class="container">
-                    <h2 class="titles">Subscribe to my Newsletter</h2>
-
+                    <h2 class="titles">Newsletter</h2>
                 </div>
-
                 <div class="container">
                     <input type="text" placeholder="Name" name="name" required>
                     <input type="text" placeholder="Email address" name="mail" required>
-
                 </div>
-
                 <div class="container">
                     <input type="submit" value="Subscribe">
                 </div>
             </form>
         </div>
         <div class="box box3">
-            <img src="./Images/facebook.png" alt="">
-            <img src="./Images/twitter.png" alt="">
-            <img src="./Images/linkedin.png" alt="">
+            <h2 class="titles">Social media</h2>
+            <img src="./Images/facebook.png" alt="" class="imagess">
+            <img src="./Images/twitter.png" alt="" class="imagess">
+            <img src="./Images/linkedin.png" alt="" class="imagess">
         </div>
     </div>
 </body>
