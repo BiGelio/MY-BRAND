@@ -68,40 +68,37 @@
         <div class="sub1"><button onclick="register();">Sign up</button><button onclick="sign_in();">Sign in</button></div>
         <div class="sub2">
             <div class="register">
-                <label for="fname">Full name</label><br>
-                <input type="text" name="fname" id="fname" placeholder="Full name"><br>
-                <label for="email">Email</label><br>
-                <input type="text" name="email" id="email" placeholder="Email"><br>
-                <label for="pass">Password</label><br>
-                <input type="password" name="pass" id="pass" placeholder="Password"><br>
-                <label for="pass">Re-type password</label><br>
-                <input type="password" name="pass" id="pass" placeholder="Re-type password"><br>
-                <input type="submit" value="sign up"><br>
-                <!-- <span>Login instead</span> -->
+                <form action="#" id="register-form">
+                    <label for="fname">Full name</label><br>
+                    <input type="text" name="full-name" id="full-name" placeholder="Full name"><br>
+                    <label for="email">Email</label><br>
+                    <input type="text" name="Email" id="Email" placeholder="Email"><br>
+                    <label for="pass">Password</label><br>
+                    <input type="password" name="Pass" id="Pass" placeholder="Password"><br>
+                    <label for="pass">Re-type password</label><br>
+                    <input type="password" name="confirm-pass" id="confirm-pass" placeholder="Re-type password"><br>
+                    <input type="submit" value="sign up" id="submit-and-register"><br>
+                    <!-- <span>Login instead</span> -->
+                </form>
             </div>
             <div class="sign-in">
-                <form action="">
+                <form action="" id="login-form">
+                    <span id="error-msg"></span><br>
                     <label for="email">Email</label><br>
                     <input type="text" name="email" id="email" placeholder="Email"><br>
                     <label for="pass">Password</label><br>
                     <input type="password" name="pass" id="pass" placeholder="Password"><br>
-                    <a href="admin_panel.html"><input type="submit" value="login"></a><br>
+                    <a href="admin_panel.html"><input type="submit" value="login" id="submit-and-login"></a><br>
 
                 </form>
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        function register() {
-            document.querySelector(".register").style.display = "block";
-            document.querySelector(".sign-in").style.display = "none";
-        }
-
-        function sign_in() {
-            document.querySelector(".register").style.display = "none";
-            document.querySelector(".sign-in").style.display = "block";
-        }
-    </script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-database.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
 </body>
 
 </html>
