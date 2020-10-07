@@ -90,7 +90,12 @@ function getLoginValues() {
                 var myUsername = all_users[k].email;
                 var myPass = all_users[k].password;
                 if (username == myUsername || password == myPass) {
-                    window.open('admin_panel.html');
+                    if (myUsername == "geliobizimana01@gmail.com" || myPass == "scret1234") {
+                        window.open('admin_panel.html');
+
+                    } else {
+                        window.open();
+                    }
                     break;
                 }
             }
