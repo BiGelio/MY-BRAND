@@ -94,7 +94,7 @@ function getLoginValues() {
                         window.open('admin_panel.html');
 
                     } else {
-                        window.open();
+                        window.open("index.html");
                     }
                     break;
                 }
