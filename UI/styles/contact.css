@@ -5,19 +5,36 @@
     margin-top: 40px;
 }
 
+.form-section span {
+    margin-left: 0px;
+}
+
 #lname,
 #fname,
-#email,
-textarea {
+#email {
+    padding: 20px;
     margin-top: 1.5em;
     width: 600px;
     border-radius: 1em;
     background-color: lightgray;
 }
 
+textarea {
+    padding: 30px;
+    margin-top: 1.5em;
+    width: 600px;
+    border-radius: 1em;
+    background-color: lightgray;
+}
+
+.form-section .validate {
+    margin: 20px;
+}
+
 #submit {
     border-radius: 1.5em;
     width: 80px;
+    border: transparent;
     background-color: mediumseagreen;
 }
 

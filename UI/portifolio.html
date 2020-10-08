@@ -74,16 +74,16 @@
             </div>
         </div>
         <div class="box sub">
-            <form action="#">
+            <form action="#" id="subForm">
                 <div class="container">
                     <h2 class="titles">Newsletter</h2>
                 </div>
                 <div class="container">
-                    <input type="text" placeholder="Name" name="name" required>
-                    <input type="text" placeholder="Email address" name="mail" required>
+                    <input type="text" placeholder="Name" name="name" id="name" required>
+                    <input type="text" placeholder="Email address" name="mail" id="mail" required>
                 </div>
                 <div class="container">
-                    <input type="submit" value="Subscribe">
+                    <input type="submit" id="subscribe" value="Subscribe">
                 </div>
             </form>
         </div>
@@ -94,6 +94,11 @@
             <img src="./Images/linkedin.png" alt="" class="imagess">
         </div>
     </div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-database.js"></script>
+    <script src="js/subscribe.js"></script>
 </body>
 
 </html>
