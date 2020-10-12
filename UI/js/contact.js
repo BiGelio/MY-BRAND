@@ -46,7 +46,9 @@ function submitData() {
             message: Message
         }
         var data = firebase.database().ref("contacts/").push().set(contactsQueries)
-            .then((success) => {})
+            .then((success) => {
+                alert("sent successfuly!")
+            })
             .catch((err) => {
                 console.error(err);
             });

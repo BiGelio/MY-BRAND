@@ -62,14 +62,23 @@ function getRegisterValues() {
 }
 
 function saveUser(fullname, Email, Password) {
-    var newUser = {
-        full_name: fullname,
-        email: Email,
-        password: Password
-    }
-    console.log(newUser)
-    var database = firebase.database().ref("users/");
-    var createUser = database.push().set(newUser);
+    firebase.auth().createUserWithEmailAndPassword(Email, Password)
+        .then((response) => {
+            var database = firebase.database().ref("users/");
+            var createUser = database.push().set({
+                full_name: fullname,
+                email: firebase.auth().currentUser.email,
+                userId: firebase.auth().currentUser.uid
+            });
+            firebase.auth().signOut();
+            full_name = "",
+                email = "",
+                Password = ""
+        }).catch((error) => {
+            console.log(error);
+        });
+
+
 }
 // Login functionalities section
 
@@ -82,24 +91,16 @@ function getLoginValues() {
         document.getElementById("error-msg").style.color = "red";
         return false;
     } else {
-        firebase.database().ref("users/").on('value', (user) => {
-            var all_users = user.val();
-            var data_key = Object.keys(all_users);
-            for (var i = 0; i < data_key.length; i++) {
-                var k = data_key[i];
-                var myUsername = all_users[k].email;
-                var myPass = all_users[k].password;
-                if (username == myUsername || password == myPass) {
-                    if (myUsername == "geliobizimana01@gmail.com" || myPass == "scret1234") {
-                        window.open('admin_panel.html');
+        firebase.auth().signInWithEmailAndPassword(username, password).then(() => {
+            console.log("Login successfully!")
+        }).catch(function(error) {
 
-                    } else {
-                        window.open("index.html");
-                    }
-                    break;
-                }
-            }
+            console.log("Use valid user name and password!")
+            document.getElementById("error-msg").style.display = "block";
+            document.getElementById("error-msg").innerText = "User does not exists!";
+            document.getElementById("error-msg").style.color = "red";
         });
+
         document.getElementById("error-msg").style.display = "none";
         document.getElementById("error-msg").innerText = "";
         return true;
