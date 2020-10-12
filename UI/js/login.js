@@ -68,7 +68,8 @@ function saveUser(fullname, Email, Password) {
             var createUser = database.push().set({
                 full_name: fullname,
                 email: firebase.auth().currentUser.email,
-                userId: firebase.auth().currentUser.uid
+                userId: firebase.auth().currentUser.uid,
+                createdAt: Date(Date.now())
             });
             firebase.auth().signOut();
             full_name = "",
@@ -93,8 +94,14 @@ function getLoginValues() {
     } else {
         firebase.auth().signInWithEmailAndPassword(username, password).then(() => {
             console.log("Login successfully!")
+            var mail = firebase.auth().currentUser.email;
+            if (username == "geliobizimana01@gmail.com") {
+                window.open("admin_panel.html")
+            } else {
+                window.open("myProfile.html");
+            }
         }).catch(function(error) {
-
+            console.log(error)
             console.log("Use valid user name and password!")
             document.getElementById("error-msg").style.display = "block";
             document.getElementById("error-msg").innerText = "User does not exists!";

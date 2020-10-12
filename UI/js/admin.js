@@ -41,6 +41,7 @@ function manage_users() {
             var myUsername = all_users[k].full_name;
             var myEmail = all_users[k].email;
             var myPass = all_users[k].userId;
+            var createdAt = all_users[k].createdAt;
 
             //    Display single user details on one row 
             var row = table.insertRow(i + 1);
@@ -48,7 +49,7 @@ function manage_users() {
             var cell2 = row.insertCell(1).innerHTML = myUsername;
             var cell3 = row.insertCell(2).innerHTML = "my image";
             var cell4 = row.insertCell(3).innerHTML = myEmail;
-            var cell5 = row.insertCell(4).innerHTML = Date(Date.now());
+            var cell5 = row.insertCell(4).innerHTML = createdAt;
             var cell6 = row.insertCell(5).innerHTML = `<button style="color:red;" id="${k}" onclick="remove_me(this);">Remove</button>`;
 
 
@@ -87,14 +88,14 @@ function subscribe() {
             var k = data_key[i];
             var myUsername = all_users[k].fullname;
             var myEmail = all_users[k].mail;
-
+            var createdAt = all_users[k].createdAt;
 
             //    Display single user details on one row 
             var row = table.insertRow(i + 1);
             var cell1 = row.insertCell(0).innerHTML = i + 1;
             var cell2 = row.insertCell(1).innerHTML = myUsername;
             var cell3 = row.insertCell(2).innerHTML = myEmail;
-            var cell4 = row.insertCell(3).innerHTML = Date(Date.now());
+            var cell4 = row.insertCell(3).innerHTML = createdAt;
         }
 
     });
@@ -126,7 +127,7 @@ function view_queries() {
             var myLastname = all_users[k].lastname;
             var myEmail = all_users[k].mail;
             var myMessage = all_users[k].message;
-
+            var datet = all_users[k].createdAt;
 
             //    Display single query details on one row 
             var row = table.insertRow(i + 1);
@@ -135,7 +136,7 @@ function view_queries() {
             var cell3 = row.insertCell(2).innerHTML = myLastname;
             var cell4 = row.insertCell(3).innerHTML = myEmail;
             var cell5 = row.insertCell(4).innerHTML = myMessage;
-            var cell6 = row.insertCell(5).innerHTML = Date(Date.now());
+            var cell6 = row.insertCell(5).innerHTML = datet;
         }
 
     });
@@ -190,13 +191,13 @@ function old_news() {
             var k = data_key[i];
             var message = all_users[k].message;
             var receiver = all_users[k].receiver;
-
+            var datet = all_users[k].createdAt;
             //    Display single query details on one row 
             var row = table.insertRow(i + 1);
             var cell1 = row.insertCell(0).innerHTML = i + 1;
             var cell2 = row.insertCell(1).innerHTML = message;
             var cell3 = row.insertCell(2).innerHTML = receiver;
-            var cell6 = row.insertCell(5).innerHTML = Date(Date.now());
+            var cell6 = row.insertCell(5).innerHTML = datet;
         }
 
     });
@@ -207,7 +208,8 @@ document.getElementById("send").addEventListener('click', sendNews);
 function sendNews() {
     firebase.database().ref("newsletter/").push().set({
             message: document.getElementById("options").value,
-            receiver: document.getElementById("newstext").value
+            receiver: document.getElementById("newstext").value,
+            createdAt: Date(Date.now())
         })
         .then((res) => {
             console.log(res)
