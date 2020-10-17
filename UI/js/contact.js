@@ -43,10 +43,13 @@ function submitData() {
             firstname: fname,
             lastname: lname,
             mail: mail1,
-            message: Message
+            message: Message,
+            createdAt: Date(Date.now())
         }
         var data = firebase.database().ref("contacts/").push().set(contactsQueries)
-            .then((success) => {})
+            .then((success) => {
+                alert("sent successfuly!")
+            })
             .catch((err) => {
                 console.error(err);
             });
@@ -73,7 +76,8 @@ function subData() {
     } else {
         var savedData = {
             fullname: name,
-            mail: email
+            mail: email,
+            createdAt: Date(Date.now())
         }
 
         var data = firebase.database().ref("subscribers/").push().set(savedData)

@@ -1,3 +1,7 @@
+/* #for-users {
+    background-color: blue;
+} */
+
 * {
     margin: 0px;
     padding: 0px;
@@ -59,7 +63,7 @@
     background-color: #67A0B2;
     padding-top: 5px;
     cursor: pointer;
-    border: 0px;
+    border: transparent;
 }
 
 .col-2 {
