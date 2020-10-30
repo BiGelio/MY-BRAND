@@ -1,37 +1,18 @@
-// Your web app's Firebase configuration
-var firebaseConfig = {
-    apiKey: "AIzaSyCM1FMDqbdssTMN2k7ZWr96oK-2FIA2qpE",
-    authDomain: "new-app-43895.firebaseapp.com",
-    databaseURL: "https://new-app-43895.firebaseio.com",
-    projectId: "new-app-43895",
-    storageBucket: "new-app-43895.appspot.com",
-    messagingSenderId: "412332630016",
-    appId: "1:412332630016:web:e70fabc4c9b8b6a2e438e5"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
 // Saving data for queries and question to database
 function submitData() {
 
-    var fname = document.getElementById("fname").value;
-    var lname = document.getElementById("lname").value;
-    var mail1 = document.getElementById("email").value;
-    var Message = document.getElementById("msg").value;
+    const fullName = document.getElementById("fname").value;
+    const email = document.getElementById("email").value;
+    const Message = document.getElementById("msg").value;
 
-    if (fname == null || fname == "") {
+    if (fullName == null || fullName == "") {
         document.getElementById("error-fname").innerText = "Fill this field!";
         document.getElementById("error-fname").style.color = "red";
         return false;
-    } else if (lname == null || lname == "") {
-        document.getElementById("error-lname").innerText = "Fill this field!";
-        document.getElementById("error-lname").style.color = "red";
-
-        return false;
-    } else if (mail1 == null || mail1 == "") {
+    } else if (email == null || email == "") {
         document.getElementById("error-email").innerText = "Fill this field!";
         document.getElementById("error-email").style.color = "red";
-        alert("data missed here")
+        alert("Data missed here")
         return false;
     } else if (Message == null || Message == "") {
         document.getElementById("error-msg").innerText = "Fill this field!";
@@ -39,20 +20,33 @@ function submitData() {
 
         return false;
     } else {
-        var contactsQueries = {
-            firstname: fname,
-            lastname: lname,
-            mail: mail1,
-            message: Message,
-            createdAt: Date(Date.now())
+        const contactsQueries = {
+            fullName: fullName,
+            email: email,
+            Message: Message
         }
-        var data = firebase.database().ref("contacts/").push().set(contactsQueries)
-            .then((success) => {
-                alert("sent successfuly!")
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+        fetch('https://desolate-bayou-90268.herokuapp.com/api/query', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json,text/plain,*/*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(contactsQueries)
+        }).then(res => res.json()).then((result) => {
+            if (result.token == 'undefined') {
+                const getResult = () => {
+                    alert(result.Message)
+                }
+                return getResult;
+            }
+            localStorage.setItem('userToken', result.token);
+            alert(result.Message)
+
+        }).catch((err) => {
+            console.log(err);
+
+        });
+
         document.getElementById("subForm").reset();
         document.getElementById("error-fname").innerText = "";
         document.getElementById("error-lname").innerText = "";
@@ -80,11 +74,7 @@ function subData() {
             createdAt: Date(Date.now())
         }
 
-        var data = firebase.database().ref("subscribers/").push().set(savedData)
-            .then((success) => {})
-            .catch((err) => {
-                console.error(err);
-            });
+
         document.getElementById("subForm").reset();
         return true;
     }
