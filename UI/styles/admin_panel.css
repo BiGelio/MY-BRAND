@@ -29,6 +29,10 @@
     cursor: pointer;
 }
 
+#model {
+    display: none;
+}
+
 .item {
     padding: 2px;
     /* background-color: white; */
@@ -55,7 +59,7 @@
     padding: 20px;
     line-height: 50px;
     width: 20%;
-    height: auto;
+    height: 600px;
     background-color: #67A0B2;
 }
 
@@ -67,6 +71,7 @@
 }
 
 .col-2 {
+    margin-left: 5%;
     background-color: #FFFFFF;
     overflow-x: auto;
 }
@@ -113,10 +118,6 @@ td img {
     height: 50px;
 }
 
-.col-3 {
-    display: none;
-}
-
 .col-3 button:not(:btn) {
     display: none;
     max-width: 300px;
@@ -132,12 +133,12 @@ textarea {
 }
 
 input[type="text"]::placeholder {
-    text-align: center;
+    font-size: 24px;
 }
 
 textarea {
     width: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
 }
 
 input[type="text"] {
@@ -158,4 +159,24 @@ input[type="text"] {
 .col-3 h2,
 label {
     margin: 20px 20px 10px 20px;
+}
+
+
+/* Blog posts errors styles*/
+
+#err-title,
+#err-file,
+#err-text {
+    display: none;
+    line-height: 40px;
+    font-size: 16px;
+}
+
+#titleLabel,
+#textareaLabel {
+    font-size: 2em;
+}
+
+#title {
+    padding: 2em 1em;
 }

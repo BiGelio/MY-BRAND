@@ -1,14 +1,14 @@
-var firebaseConfig = {
-    apiKey: "AIzaSyCM1FMDqbdssTMN2k7ZWr96oK-2FIA2qpE",
-    authDomain: "new-app-43895.firebaseapp.com",
-    databaseURL: "https://new-app-43895.firebaseio.com",
-    projectId: "new-app-43895",
-    storageBucket: "new-app-43895.appspot.com",
-    messagingSenderId: "412332630016",
-    appId: "1:412332630016:web:e70fabc4c9b8b6a2e438e5"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+// var firebaseConfig = {
+//     apiKey: "AIzaSyCM1FMDqbdssTMN2k7ZWr96oK-2FIA2qpE",
+//     authDomain: "new-app-43895.firebaseapp.com",
+//     databaseURL: "https://new-app-43895.firebaseio.com",
+//     projectId: "new-app-43895",
+//     storageBucket: "new-app-43895.appspot.com",
+//     messagingSenderId: "412332630016",
+//     appId: "1:412332630016:web:e70fabc4c9b8b6a2e438e5"
+// };
+// // Initialize Firebase
+// firebase.initializeApp(firebaseConfig);
 
 function register() {
     document.querySelector(".register").style.display = "block";
@@ -31,11 +31,11 @@ document.getElementById("submit-and-login").addEventListener('click', (event) =>
 });
 // Register functionalities section
 function getRegisterValues() {
-    var fullname = document.getElementById("full-name").value;
+    var fullName = document.getElementById("full-name").value;
     var Email = document.getElementById("Email").value;
     var Pass = document.getElementById("Pass").value;
     var confirmpass = document.getElementById("confirm-pass").value;
-    if (fullname == null || fullname == "") {
+    if (fullName == null || fullName == "") {
         alert("Check your full name field!");
         return false;
     } else if (Email == null || Email == "") {
@@ -54,30 +54,36 @@ function getRegisterValues() {
         alert("Your password mismatch!");
         return false;
     } else {
-        console.log(fullname + "" + Pass + "" + Email)
-        alert(fullname + "" + Pass + "" + Email);
-        saveUser(fullname, Email, Pass);
+        console.log(fullName + "" + Pass + "" + Email)
+        alert(fullName + "" + Pass + "" + Email);
+        saveUser(fullName, Email, Pass, confirmpass);
         return true;
     }
 }
 
-function saveUser(fullname, Email, Password) {
-    firebase.auth().createUserWithEmailAndPassword(Email, Password)
-        .then((response) => {
-            var database = firebase.database().ref("users/");
-            var createUser = database.push().set({
-                full_name: fullname,
-                email: firebase.auth().currentUser.email,
-                userId: firebase.auth().currentUser.uid,
-                createdAt: Date(Date.now())
-            });
-            firebase.auth().signOut();
-            full_name = "",
-                email = "",
-                Password = ""
-        }).catch((error) => {
-            console.log(error);
-        });
+function saveUser(fullName, Email, Password, confirmpass) {
+    fetch('https://desolate-bayou-90268.herokuapp.com/api/user', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json,text/plain,*/*',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            fullName: fullName,
+            email: Email,
+            password: Password,
+            confirmPassword: confirmpass
+        })
+    }).then(res => res.json()).then((result) => {
+        console.log(result)
+        if (result.token !== "undefined") {
+            localStorage.setItem('userToken', result.token);
+            alert(result.Message);
+        }
+        alert(result.Message);
+    }).catch((err) => {
+        alert("Something went wrong!")
+    });
 
 
 }
@@ -92,20 +98,36 @@ function getLoginValues() {
         document.getElementById("error-msg").style.color = "red";
         return false;
     } else {
-        firebase.auth().signInWithEmailAndPassword(username, password).then(() => {
-            console.log("Login successfully!")
-            var mail = firebase.auth().currentUser.email;
-            if (username == "geliobizimana01@gmail.com") {
+        fetch('https://desolate-bayou-90268.herokuapp.com/api/user/loginUser', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json,text/plain,*/*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: username,
+                password: password
+            })
+        }).then(res => res.json()).then((result) => {
+            if (result.Role == "Admin" && result.token !== "undefined") {
+                localStorage.setItem('adminToken', result.token);
                 window.open("admin_panel.html")
+            } else if (result.Role == "member" && result.token !== "undefined") {
+                localStorage.setItem('userToken', result.token);
+                window.open("index.html");
+            } else if (result.token == 'undefined') {
+                const getResult = () => {
+                    alert(result.Message)
+                }
+                return getResult;
             } else {
-                window.open("myProfile.html");
+                document.getElementById("error-msg").style.display = "block";
+                document.getElementById("error-msg").innerText = "User does not exists!";
+                document.getElementById("error-msg").style.color = "red";
             }
-        }).catch(function(error) {
-            console.log(error)
-            console.log("Use valid user name and password!")
-            document.getElementById("error-msg").style.display = "block";
-            document.getElementById("error-msg").innerText = "User does not exists!";
-            document.getElementById("error-msg").style.color = "red";
+        }).catch((err) => {
+            alert("Something went wrong!");
+
         });
 
         document.getElementById("error-msg").style.display = "none";
