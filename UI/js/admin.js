@@ -38,7 +38,7 @@ function manage_users() {
     var row = table.insertRow(0);
     var cell1 = (row.insertCell(0).innerHTML = ` <th> No </th>`);
     var cell2 = (row.insertCell(1).innerHTML = `<th>Name</th>`);
-    var cell3 = (row.insertCell(2).innerHTML = `<th> Profile picture </th>`);
+    var cell3 = (row.insertCell(2).innerHTML = `<th> User type </th>`);
     var cell4 = (row.insertCell(3).innerHTML = `<th>Email</th>`);
     var cell5 = (row.insertCell(4).innerHTML = `<th> Date joined </th>`);
     var cell6 = (row.insertCell(5).innerHTML = `<th>Action</th> `);
@@ -52,17 +52,18 @@ function manage_users() {
         }
     }).then(res => res.json()).then((result) => {
         const data = result.docs;
+        var i = 0;
         data.forEach((value) => {
-            var i = 0;
+
             //    Display single user details on one row
             var row = table.insertRow(i + 1);
             var cell1 = (row.insertCell(0).innerHTML = i + 1);
             var cell2 = (row.insertCell(1).innerHTML = value.fullName);
-            var cell3 = (row.insertCell(2).innerHTML = "my image");
+            var cell3 = (row.insertCell(2).innerHTML = value.role);
             var cell4 = (row.insertCell(3).innerHTML = value.email);
-            var cell5 = (row.insertCell(4).innerHTML = Date(Date.now()));
+            var cell5 = (row.insertCell(4).innerHTML = value.createdAt);
             var cell6 = (row.insertCell(5).innerHTML = `<button style="color:red;" id="${value._id}" onclick="remove_me(this);">Remove</button>`);
-
+            i += 1;
         })
     }).catch((err) => {
         alert("Something went wrong!")
@@ -74,17 +75,22 @@ function manage_users() {
 
 // Removing user from database
 function remove_me(take) {
-    var valu = take.getAttribute("id");
-    console.log(valu);
+    var id = take.getAttribute("id");
+    const accessToken = localStorage.getItem('adminToken');
     var x = confirm("Are you sure you want to delete?");
     if (x) {
-        firebase
-            .database()
-            .ref("users/" + valu)
-            .remove().then(() => {
-                firebase.auth().currentUser.remove().then(success => console.log("User deleted!"))
-                    .catch(err => console.log(err));
-            })
+        const url = 'https: //desolate-bayou-90268.herokuapp.com/api/user/' + id;
+        fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+            }
+        }).then(res => res.json()).then((result) => {
+            alert(result)
+        }).catch((err) => {
+            console.log(err)
+            alert("Something went wrong!")
+        });
         manage_users();
         return true;
     } else {
@@ -141,36 +147,37 @@ function view_queries() {
     // This is row for table header
     var row = table.insertRow(0);
     var cell1 = (row.insertCell(0).innerHTML = ` <th> No </th>`);
-    var cell2 = (row.insertCell(1).innerHTML = `<th>First name</th>`);
-    var cell2 = (row.insertCell(2).innerHTML = `<th>Last name</th>`);
-    var cell3 = (row.insertCell(3).innerHTML = `<th>Email</th>`);
-    var cell3 = (row.insertCell(4).innerHTML = `<th>Message</th>`);
-    var cell5 = (row.insertCell(5).innerHTML = `<th> Date received </th>`);
+    var cell2 = (row.insertCell(1).innerHTML = `<th>Name</th>`);
+    var cell3 = (row.insertCell(2).innerHTML = `<th>Email</th>`);
+    var cell3 = (row.insertCell(3).innerHTML = `<th>Message</th>`);
+    var cell5 = (row.insertCell(4).innerHTML = `<th> Date received </th>`);
+    var cell = (row.insertCell(5).innerHTML = `<th> Action </th>`);
+    fetch('https://desolate-bayou-90268.herokuapp.com/api/query', {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json,text/plain,*/*',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+        }
+    }).then(res => res.json()).then((result) => {
+        console.log(result)
+        const data = result.docs;
+        var i = 0;
+        data.forEach((data) => {
 
-    firebase
-        .database()
-        .ref("contacts/")
-        .on("value", (queries) => {
-            var all_users = queries.val();
-            var data_key = Object.keys(all_users);
-            for (var i = 0; i < data_key.length; i++) {
-                var k = data_key[i];
-                var myFirstname = all_users[k].firstname;
-                var myLastname = all_users[k].lastname;
-                var myEmail = all_users[k].mail;
-                var myMessage = all_users[k].message;
-                var datet = all_users[k].createdAt;
-
-                //    Display single query details on one row
-                var row = table.insertRow(i + 1);
-                var cell1 = (row.insertCell(0).innerHTML = i + 1);
-                var cell2 = (row.insertCell(1).innerHTML = myFirstname);
-                var cell3 = (row.insertCell(2).innerHTML = myLastname);
-                var cell4 = (row.insertCell(3).innerHTML = myEmail);
-                var cell5 = (row.insertCell(4).innerHTML = myMessage);
-                var cell6 = (row.insertCell(5).innerHTML = datet);
-            }
-        });
+            //    Display single arti details on one row
+            var row = table.insertRow(i + 1);
+            var cell1 = (row.insertCell(0).innerHTML = i + 1);
+            var cell2 = (row.insertCell(1).innerHTML = data.fullName);
+            var cell3 = (row.insertCell(2).innerHTML = data.email);
+            var cell4 = (row.insertCell(3).innerHTML = data.Message);
+            var cell5 = (row.insertCell(4).innerHTML = data.createdAt);
+            var cell6 = (row.insertCell(5).innerHTML = `<button style="color:red;" id="${data._id}" onclick="remove_me(this);">Remove</button>`);
+            i += 1;
+        })
+    }).catch((err) => {
+        alert("Something went wrong!")
+    });
 }
 
 // newsletters section
@@ -310,15 +317,23 @@ function savePosts(event) {
         errText.style.color = "red"
         return false;
     } else {
-        firebase.database().ref("posts/").push().set({
-            Title: title,
-            Description: description,
-            createdAt: Date(Date.now())
+        const adminToken = localStorage.getItem('adminToken')
+        fetch('https://desolate-bayou-90268.herokuapp.com/api/article', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json,text/plain,*/*',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${adminToken}`
+            },
+            body: JSON.stringify({
+                title: title,
+                description: description
+            })
+        }).then(res => res.json()).then((result) => {
+            alert(result.Message);
+        }).catch((err) => {
+            alert("Something went wrong!")
         });
-        console.log(firebase);
-        alert("Post created successfully!");
-        document.getElementById("myform").reset();
-        return true;
     }
 }
 // Section for retrieving posts !
@@ -338,30 +353,31 @@ function retrieve_posts() {
     var cell2 = (row.insertCell(1).innerHTML = `<th>Title</th>`);
     var cell3 = (row.insertCell(2).innerHTML = `<th>Description </th>`);
     var cell4 = (row.insertCell(3).innerHTML = `<th>Date created</th>`);
-    var cell5 = (row.insertCell(4).innerHTML = `<th>Action</th> `);
+    var cell5 = (row.insertCell(4).innerHTML = `<th>Actions</th> `);
 
-    firebase
-        .database()
-        .ref("posts/")
-        .on("value", (post) => {
-            var all_posts = post.val();
-            var data_key = Object.keys(all_posts);
-            for (var i = 0; i < data_key.length; i++) {
-                var k = data_key[i];
-                var title = all_posts[k].Title;
-                var description = all_posts[k].Description;
-                var createdAt = all_posts[k].createdAt;
-                //    Display single user details on one row
-                var row = table.insertRow(i + 1);
-                var cell1 = (row.insertCell(0).innerHTML = i + 1);
-                var cell2 = (row.insertCell(1).innerHTML = title);
-                var cell3 = (row.insertCell(2).innerHTML = description);
-                var cell4 = (row.insertCell(3).innerHTML = createdAt);
+    fetch('https://desolate-bayou-90268.herokuapp.com/api/article', {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json,text/plain,*/*',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+        }
+    }).then(res => res.json()).then((result) => {
+        var i = 0;
 
-                var cell6 = (row.insertCell(4).innerHTML = `<button style="color:blue;" id="${k}" onclick="edit_post(this);">Edit</button>
-                <button style="color:red;" id="${k}" onclick="remove_post(this);">Delete</button>`);
-            }
-        });
+        result.forEach((value) => {
+            /**    Display single user details on one row*/
+            var row = table.insertRow(i + 1);
+            var cell1 = (row.insertCell(0).innerHTML = i + 1);
+            var cell2 = (row.insertCell(1).innerHTML = value.title);
+            var cell3 = (row.insertCell(2).innerHTML = value.description);
+            var cell4 = (row.insertCell(3).innerHTML = value.createdAt);
+            var cell5 = (row.insertCell(4).innerHTML = `<button style="color:blue;" id="${value._id}" onclick="edit_post(this);">Edit</button><button style="color:blue;" id="${value._id}" onclick="remove_post(this);">Delete</button>`);
+            i += 1;
+        })
+    }).catch((err) => {
+        alert("Something went wrong!");
+    });
 }
 
 function edit_post(take) {
@@ -377,22 +393,48 @@ function edit_post(take) {
                 if (attr == ke) {
                     var title = all_posts[ke].Title;
                     var description = all_posts[ke].Description;
-                    var divs = `  <div class="col-3" id="col-3">
-                    <button class="btn" id="create" onclick="manage_posts();">Create post</button>
-                    <button class="btn" id="view" onclick="retrieve_posts();">View posts</button>
-                    <h2>Create new post here.</h2>
-                    <form action="" name="myform" id="myform">
-                        <label id="titleLabel">Title</label><br>
-                        <input type="text" name="title" id="title" value="${title}" placeholder="title"><br>
-                        <span id="err-title"></span><br>
-                        <input type="file" name="image" id="file" accept="image/*">
-                        <span id="err-file"></span><br>
-                        <label id="textareaLabel"> Post description</label><br>
-                        <textarea name="textarea" id="postTextarea" cols="30" rows="10" value="${description}" placeholder="Description........."></textarea><br>
-                        <span id="err-text"></span><br>
-                        <input type="submit" value="post" onclick="saveUpdate(event,attr);">
-                    </form>
-                </div>`;
+                    var divs = ` < div class = "col-3"
+                id = "col-3" >
+                    <
+                    button class = "btn"
+                id = "create"
+                onclick = "manage_posts();" > Create post < /button> <
+                    button class = "btn"
+                id = "view"
+                onclick = "retrieve_posts();" > View posts < /button> <
+                    h2 > Create new post here. < /h2> <
+                    form action = ""
+                name = "myform"
+                id = "myform" >
+                    <
+                    label id = "titleLabel" > Title < /label><br> <
+                    input type = "text"
+                name = "title"
+                id = "title"
+                value = "${title}"
+                placeholder = "title" > < br >
+                    <
+                    span id = "err-title" > < /span><br> <
+                    input type = "file"
+                name = "image"
+                id = "file"
+                accept = "image/*" >
+                    <
+                    span id = "err-file" > < /span><br> <
+                    label id = "textareaLabel" > Post description < /label><br> <
+                    textarea name = "textarea"
+                id = "postTextarea"
+                cols = "30"
+                rows = "10"
+                value = "${description}"
+                placeholder = "Description........." > < /textarea><br> <
+                    span id = "err-text" > < /span><br> <
+                    input type = "submit"
+                value = "post"
+                onclick = "saveUpdate(event,attr);" >
+                    <
+                    /form> <
+                    /div>`;
                     document.getElementById("col-2").innerHTML = divs;
                     document.querySelector(".col-1").style.height = "600px";
                 }
@@ -411,16 +453,21 @@ function saveUpdate(event, attr) {
 }
 
 function remove_post(take) {
-    var valu = take.getAttribute("id");
-    console.log(valu);
+    var id = take.getAttribute("id");
     var x = confirm("Are you sure you want to delete?");
     if (x) {
-        firebase
-            .database()
-            .ref("posts/" + valu)
-            .remove().then(() => {
-                alert("Post deleted from data store")
-            })
+        const url = 'https: //desolate-bayou-90268.herokuapp.com/api/article/' + id;
+        fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+            }
+        }).then(res => res.json()).then((result) => {
+            alert(result)
+        }).catch((err) => {
+            console.log(err)
+            alert("Something went wrong!")
+        });
         retrieve_posts();
         return true;
     } else {
