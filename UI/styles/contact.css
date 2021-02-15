@@ -1,44 +1,40 @@
 .form-section {
-    /* display: block; */
-    /* padding: 80px; */
-    text-align: center;
-    margin-top: 40px;
+  /* display: block; */
+  /* padding: 80px; */
+  text-align: center;
+  margin-top: 40px;
 }
 
 .form-section span {
-    margin-left: 0px;
+  margin-left: 0px;
 }
 
 #lname,
 #fname,
 #email {
-    padding: 20px;
-    margin-top: 1.5em;
-    width: 600px;
-    border-radius: 1em;
-    background-color: lightgray;
+  padding: 20px;
+  margin-top: 1.5em;
+  width: 600px;
+  border-radius: 1em;
+  background-color: lightgray;
 }
 
 textarea {
-    padding: 30px;
-    margin-top: 1.5em;
-    width: 600px;
-    border-radius: 1em;
-    background-color: lightgray;
+  padding: 30px;
+  margin-top: 1.5em;
+  width: 600px;
+  border-radius: 1em;
+  background-color: lightgray;
+  height: 150px;
 }
 
 .form-section .validate {
-    margin: 20px;
+  margin: 20px;
 }
 
 #submit {
-    border-radius: 1.5em;
-    width: 80px;
-    border: transparent;
-    background-color: mediumseagreen;
+  border-radius: 1.5em;
+  width: 600px;
+  border: transparent;
+  background-color: skyblue;
 }
-
-
-/* .form-section span {
-    margin-top: 0.6em;
-} */

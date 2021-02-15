@@ -1,104 +1,120 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Service on time</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="./Images/favicon.jpeg"
+      sizes="16x16"
+    />
+    <meta name="keywords" content="Service at time,service,designer" />
+    <link rel="stylesheet" href="styles\general_navbar.css" />
+    <link rel="stylesheet" href="styles\contact.css" />
+  </head>
 
-<head>
-    <title>Service at time</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/png" href="./Images/favicon.jpeg" sizes="16x16">
-    <meta name="keywords" content="Service at time,service,designer">
-    <link rel="stylesheet" href="styles\general_navbar.css">
-    <link rel="stylesheet" href="styles\contact.css">
-
-</head>
-
-<body>
-    <h2 id="head">SERVICE AT TIME</h2>
+  <body>
     <nav>
-        <ul>
-            <li><a href="../index.html">HOME</a></li>
-            <li><a href="about.html">ABOUT</a></li>
-            <li><a href="portifolio.html">PORTIFOLIO</a></li>
-            <li><a href="blog.html">BLOG</a></li>
-            <li><a href="#">CONTACT</a></li>
-            <li>
-                <a href="login.html">SIGN IN</a></li>
-
-        </ul>
+      <ul>
+        <li><a href="../index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="portifolio.html">PORTIFOLIO</a></li>
+        <li><a href="blog.html">BLOG</a></li>
+        <li><a href="#">CONTACT</a></li>
+        <li>
+          <a href="login.html">SIGN IN</a>
+        </li>
+      </ul>
     </nav>
+
     <!-- Section of contact form -->
     <div class="form-section">
-        <form action="https://desolate-bayou-90268.herokuapp.com/api/query" method="POST" id="myForm">
+      <form
+        action="https://desolate-bayou-90268.herokuapp.com/api/query"
+        method="POST"
+        id="myForm"
+      >
+        <h2>Get in touch with me here.</h2>
+        <label> Full name</label><br />
+        <input type="text" name="fullName" id="fname" /><br />
+        <span id="error-fname"></span><br />
 
-            <label> Full name</label><br>
-            <input type="text" name="fullName" id="fname"><br>
-            <span id="error-fname"></span><br>
+        <label> Email</label><br />
+        <input type="text" name="email" id="email" /><br />
+        <span id="error-email"></span><br />
 
-            <label> Email</label><br>
-            <input type="text" name="email" id="email"><br>
-            <span id="error-email"></span><br>
+        <label> Message</label><br />
+        <textarea name="Message" id="msg" cols="80" rows="10"></textarea><br />
+        <span id="error-msg"></span><br />
 
-            <label> Message</label><br>
-            <textarea name="Message" id="msg" cols="80" rows="10"></textarea><br>
-            <span id="error-msg"></span><br>
-
-            <input type="submit" value="send" id="submit">
-
-
-        </form>
+        <input type="submit" value="send" id="submit" />
+      </form>
     </div>
 
     <!-- Footer section of this page -->
     <div class="footer">
-        <div class="box quick_links">
-            <div class="container">
-                <h2 class="titles"> Quick links</h2>
-                <span><a href="../index.html">Home</a></span>
-                <span><a href="about.html">About</a></span>
-                <span><a href="portifolio.html">Portifolio</a></span>
-                <span>  <a href="blog.html">Blog</a></span>
-                <span> <a href="contact.html">Contact</a></span>
-            </div>
+      <div class="box quick_links">
+        <div class="container">
+          <h2 class="titles">Quick links</h2>
+          <span><a href="../index.html">Home</a></span>
+          <span><a href="about.html">About</a></span>
+          <span><a href="portifolio.html">Portifolio</a></span>
+          <span> <a href="blog.html">Blog</a></span>
+          <span> <a href="contact.html">Contact</a></span>
         </div>
-        <div class="box address">
-            <div class="container">
-                <h2 class="titles">Address</h2>
-                <span><img src="./Images/location1.png" alt="">Rwanda, Kigali</span>
-                <span><img src="./Images/whatsapp.png" alt="">0723 436 915</span>
-                <span><img src="./Images/email.jpg" alt="">info@gmail.com</span>
-            </div>
+      </div>
+      <div class="box address">
+        <div class="container">
+          <h2 class="titles">Address</h2>
+          <span><img src="./Images/location1.png" alt="" />Rwanda, Kigali</span>
+          <span><img src="./Images/whatsapp.png" alt="" />0723 436 915</span>
+          <span><img src="./Images/email.jpg" alt="" />info@gmail.com</span>
         </div>
-        <div class="box sub">
-            <form action="#" id="subForm">
-                <div class="container">
-                    <h2 class="titles">Newsletter</h2>
-                </div>
-                <div class="container">
-                    <input type="text" placeholder="Name" name="name" id="name" required>
-                    <input type="text" placeholder="Email address" name="mail" id="mail" required>
-                </div>
-                <div class="container">
-                    <input type="submit" id="subscribe" value="Subscribe">
-                </div>
-            </form>
-        </div>
-        <div class="box box3">
-            <h2 class="titles">Social media</h2>
-            <img src="./Images/facebook.png" alt="" class="imagess">
-            <img src="./Images/twitter.png" alt="" class="imagess">
-            <img src="./Images/linkedin.png" alt="" class="imagess">
-        </div>
+      </div>
+      <div class="box sub">
+        <form action="#" id="subForm">
+          <div class="container">
+            <h2 class="titles">Newsletter</h2>
+          </div>
+          <div class="container">
+            <input
+              type="text"
+              placeholder="Name"
+              name="name"
+              id="name"
+              required
+            />
+            <input
+              type="text"
+              placeholder="Email address"
+              name="mail"
+              id="mail"
+              required
+            />
+          </div>
+          <div class="container">
+            <input type="submit" id="subscribe" value="Subscribe" />
+          </div>
+        </form>
+      </div>
+      <div class="box box3">
+        <h2 class="titles">Social media</h2>
+        <img src="./Images/facebook.png" alt="" class="imagess" />
+        <img src="./Images/twitter.png" alt="" class="imagess" />
+        <img src="./Images/linkedin.png" alt="" class="imagess" />
+      </div>
     </div>
-
 
     <script src="js/contact.js"></script>
     <script src="js/subscribe.js"></script>
     <script>
-        document.getElementById("submit").addEventListener("click", function(event) {
-            event.preventDefault()
-            submitData();
+      document
+        .getElementById("submit")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          submitData();
         });
     </script>
-
-</body>
-
+  </body>
 </html>
